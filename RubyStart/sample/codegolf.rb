@@ -1,0 +1,1 @@
+r=-5..5;r.each{|i|c='';r.each{|j|c+=i.abs+j.abs==4||i%5==0&&(i-j).abs==5?'*':' '};puts c}

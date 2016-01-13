@@ -1,0 +1,11 @@
+ruby on rails 설치하기(윈도우즈)
+
+railsinstaller.org 에서 한방설치(ruby, rails, git)
+
+rails new demo
+* 에러 발생시
+  - openssl 문제 : Gemfile에서 source=http://rubygems.org 로 수정하고 다시 rails new demo
+  - cygwin allocate .... : rebase 다운로드, rebase -b 0x30000000 C:\RailsInstaller\DevKit\bin\msys-1.0.dll
+  
+  cd demo
+  rails server

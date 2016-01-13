@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Test1Map">
+
+	<typeAlias alias="Demo" type="kr.or.javacafe.test1.domain.Demo"/>
+	
+	<insert id="insertDemo" parameterClass="Demo">
+		insert into 
+			demo (data_1)
+		values 
+			(#data#)
+	</insert>	
+	
+	<select id="selectDemo" resultClass="java.util.HashMap">
+		SELECT * FROM demo
+		UNION
+		SELECT * FROM demo
+		UNION
+		SELECT * FROM demo
+		UNION
+		SELECT * FROM demo
+		UNION
+		SELECT * FROM demo
+		UNION
+		SELECT * FROM demo
+		UNION
+		SELECT * FROM demo
+		UNION
+		SELECT * FROM demo
+		UNION
+		SELECT * FROM demo
+		UNION
+		SELECT * FROM demo
+		UNION
+		SELECT * FROM demo
+		UNION
+		SELECT * FROM demo
+		UNION
+		SELECT * FROM demo
+		ORDER BY id DESC
+		FOR ORDERBY_NUM() BETWEEN 1 AND 10 
+	</select>
+	
+</sqlMap>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
