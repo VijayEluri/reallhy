@@ -1,0 +1,23 @@
+<스터디 목표>
+ . 12월까지 Scala 문법 및 Functional Programming 에 익숙해지기
+ . 기본서 한권 끝내기
+
+<스터디 개요>
+ 매주 화, 목 : 12시~13시30분
+ case 목 : scala for the impatient, 2chapter씩
+ case 화 : ProjectEuler, 2문제씩
+
+< 스터디 이력 >
+ 11/20 : Scala for the Impatient 리뷰 (Chapter1, Chapter2)
+ 11/25 : Project Euler 문제 풀이 (001,002)
+
+< 스터디 구성원 : 9명 >
+ 한기훈
+ 진유리
+ 이호연
+ 노광선
+ 윤호상
+ 송근기
+ 이진행
+ 김진령
+ 배가영
