@@ -1,0 +1,42 @@
+{
+    "protocol_id":"__AUI_DSCOMM_PROTOCOL__",
+    "protocol_version":"0.0.2",
+    "dataset_count":2,
+    "data": [
+        {
+            "dataset_id":"sample",
+            "tr_add":[
+                {"name":"GilDong1", "age":10},
+                {"name":"GilDong2", "age":20},
+                {"name":"GilDong3", "age":30},
+                {"name":"YoungHee", "age":40},
+                {"name":"WhiteSam", "age":50}
+            ],
+            "tr_delete":[
+                {"name":"GilDong4", "age":10},
+                {"name":"GilDong5", "age":20},
+                {"name":"GilDong6", "age":30}
+            ],
+            "tr_update":[
+                {"name":"GilDong7", "age":10},
+                {"name":"GilDong8", "age":30},
+                {"name":"YoungHee2", "age":40},
+                {"name":"WhiteSam2", "age":50}
+            ]
+        },
+        {
+            "dataset_id":"user",
+            "tr_add":[
+                {"name":"GilDong1", "age":10},
+                {"name":"WhiteSam", "age":50}
+            ],
+            "tr_delete":[
+                {"name":"GilDong5", "age":20},
+                {"name":"GilDong6", "age":30}
+            ],
+            "tr_update":[
+                {"name":"GilDong7", "age":10}
+            ]
+        }
+    ]
+}

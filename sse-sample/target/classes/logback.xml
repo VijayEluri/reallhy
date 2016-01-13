@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+
+	<contextName>anyframe-online</contextName>
+	<jmxConfigurator />
+
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>debug</level>
+		</filter>
+		<encoder>
+			<pattern>[%d] %-5level %logger{0} : %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="serviceLog" class="ch.qos.logback.classic.sift.SiftingAppender">
+		<filter class="com.anyframe.online.runtime.management.log.mdc.MDCThresholdFilter">
+			<level>serviceLogLevel</level>
+		</filter>
+		<discriminator>
+			<key>serviceId</key>
+			<defaultValue>unknown</defaultValue>
+		</discriminator>
+		<filter
+			class="com.anyframe.online.runtime.management.log.mdc.MDCKeyExistFilter">
+			<key>serviceId</key>
+		</filter>
+		<sift>
+            <!-- ThreadLocal(MDC가 관리)에서 serviceId key로 가져옴. serviceId 별로 로깅 가능.
+                 RollingFileAppender를 사용하는 경우 일정 용량 이상일 경우 다른 로깅 파일 생성 -->
+			<appender name="SERVICE-${serviceId}" class="ch.qos.logback.core.FileAppender">
+				<file>/logs/serviceLog/${serviceId}.log</file>
+				<append>true</append>
+				<layout class="ch.qos.logback.classic.PatternLayout">
+					<pattern>[%d{yyyy-MM-dd HH:mm:ss}] %-5level %logger{0} [%X{serviceId}]: %msg%n</pattern>
+				</layout>
+			</appender>
+		</sift>
+	</appender>
+
+	<appender name="ipLog" class="ch.qos.logback.classic.sift.SiftingAppender">
+    <filter
+            class="com.anyframe.online.runtime.management.log.mdc.MDCThresholdFilter">
+        <level>ipLogLevel</level>
+    </filter>
+    <discriminator>
+        <key>ip</key>
+        <defaultValue>unknown</defaultValue>
+    </discriminator>
+    <filter
+            class="com.anyframe.online.runtime.management.log.mdc.MDCKeyExistFilter">
+        <key>ip</key>
+    </filter>
+    <sift>
+        <appender name="IP-${ip}" class="ch.qos.logback.core.FileAppender">
+            <file>/logs/ipLog/${ip}.log</file>
+            <append>true</append>
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>[%d{yyyy-MM-dd HH:mm:ss}] %-5level %logger{0} [%X{ip}]:
+                    %msg%n</pattern>
+            </layout>
+        </appender>
+    </sift>
+</appender>
+
+	<appender name="userIdLog" class="ch.qos.logback.classic.sift.SiftingAppender">
+		<filter
+			class="com.anyframe.online.runtime.management.log.mdc.MDCThresholdFilter">
+			<level>userLogLevel</level>
+		</filter>
+		<discriminator>
+			<key>userId</key>
+			<defaultValue>unknown</defaultValue>
+		</discriminator>
+		<filter
+			class="com.anyframe.online.runtime.management.log.mdc.MDCKeyExistFilter">
+			<key>userId</key>
+		</filter>
+		<sift>
+			<appender name="USER-${userId}" class="ch.qos.logback.core.FileAppender">
+				<file>/logs/userLog/${userId}.log</file>
+				<append>true</append>
+				<layout class="ch.qos.logback.classic.PatternLayout">
+					<pattern>[%d{yyyy-MM-dd HH:mm:ss}] %-5level %logger{0}
+						[%X{userId}]: %msg%n</pattern>
+				</layout>
+			</appender>
+		</sift>
+	</appender>
+
+	<logger name="org.anyframe" additivity="false">
+		<appender-ref ref="serviceLog" />
+		<appender-ref ref="ipLog" />
+		<appender-ref ref="userIdLog" />
+		<appender-ref ref="console" />
+	</logger>
+
+	<logger name="com.anyframe.online.runtime" level="debug"  additivity="false">
+		<appender-ref ref="serviceLog" />
+		<appender-ref ref="ipLog" />
+		<appender-ref ref="userIdLog" />
+		<appender-ref ref="console" />
+	</logger>
+
+	<logger name="com.anyframe.plugin" level="debug" additivity="false">
+		<appender-ref ref="serviceLog" />
+		<appender-ref ref="ipLog" />
+		<appender-ref ref="userIdLog" />
+		<appender-ref ref="console" />
+	</logger>
+
+	<logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="console"/>
+    </logger>
+
+	<logger name="com.anyframe.online.runtime.management" level="INFO" additivity="false" >
+        <appender-ref ref="console"/>
+    </logger>
+
+	<root level="info">
+		<appender-ref ref="console" />
+	</root>
+
+</configuration>

@@ -1,0 +1,6 @@
+{
+    "ABCDE0002":
+        [{"userId":"tempUser", "userName":"Younghee", "companyName":"sds", "cellPhoneNo":"111-2223-4444", "password":"24qwr42123123"}],
+    "ABCDE0001":
+        {"userId":"admin"}
+}
